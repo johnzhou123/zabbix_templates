@@ -177,10 +177,11 @@ class MGdb(object):
             for bp in pbinpaths:
                 if os.path.exists(bp):
                     if username and password:
-                        cmdstr = "echo 'db.serverStatus()' | %s admin --host '%s'  --port %s -u %s -p %s --quiet" % (bp, hostname, port, username, password)
+                        cmdstr = "echo 'db.serverStatus()' | %s %s:%s/admin -u'%s' -p'%s' --quiet" % (bp, hostname, port, username, password)
                     else:
+                       # cmdstr = "echo 'db.serverStatus()' | %s %s:%s/admin -uadmin -p123456 --quiet" % (bp, hostname, port)
                         cmdstr = "echo 'db.serverStatus()' | %s admin --host '%s'  --port %s --quiet" % (bp, hostname, port)
-                    break
+		    break
             if not cmdstr:
                 print "the mongo not find"
                 return None
@@ -320,8 +321,7 @@ def main():
 
 
     #################start
-    #port_list=[27017]
-    port_list=[]
+    port_list=[27017]
     if options.is_list == True:
         print monitor_obj.get_port_list(port_list)
         return
