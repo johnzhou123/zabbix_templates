@@ -169,7 +169,7 @@ class MGdb(object):
                     return resobj
             
             pbinpaths = [
-                         "/usr/local/mongodb/bin/mongo",
+                         "/usr/bin/mongo",
                          "/opt/mongodb/bin/mongo",
                          "/home/mongodb/mongodb/bin/mongo",
             ]
@@ -320,7 +320,8 @@ def main():
 
 
     #################start
-    port_list=[27017]
+    #port_list=[27017]
+    port_list=[]
     if options.is_list == True:
         print monitor_obj.get_port_list(port_list)
         return

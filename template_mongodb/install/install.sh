@@ -1,38 +1,37 @@
 # conf
-mkdir -p /etc/zabbix/zabbix_agentd.d/
-cp conf/mongodb.conf /etc/zabbix/zabbix_agentd.d/
+cp conf/mongodb.conf /usr/local/zabbix/etc/zabbix_agentd.conf.d/
 
 # scripts
-mkdir -p /usr/lib/zabbix/externalscripts/
-cp conf/mdb_sstat.py /usr/lib/zabbix/externalscripts/
-cp -rf conf/qiueer/ /usr/lib/zabbix/externalscripts/
-chmod 777 /usr/lib/zabbix/externalscripts/mdb_sstat.py
+mkdir /usr/local/zabbix/bin/scripts
+cp conf/mdb_sstat.py /usr/local/zabbix/bin/scripts/
+cp -rf conf/qiueer/ /usr/local/zabbix/bin/scripts/
+chmod 777 /usr/local/zabbix/bin/scripts/mdb_sstat.py
 
 # UnsafeUserParameters=1
-CHECK=`grep "^Include=/etc/zabbix/zabbix_agentd.d/" /etc/zabbix/zabbix_agentd.conf|wc -l`
+CHECK=`grep "^Include=/usr/local/zabbix/etc/zabbix_agentd.conf.d/" /usr/local/zabbix/etc/zabbix_agentd.conf|wc -l`
 if [[ "w$CHECK" == "w0" ]]
 then
-    echo 'Include=/etc/zabbix/zabbix_agentd.d/' >> /etc/zabbix/zabbix_agentd.conf
+    echo 'Include=/usr/local/zabbix/etc/zabbix_agentd.conf.d/' >> /usr/local/zabbix/etc/zabbix_agentd.conf
 fi
 
 # UnsafeUserParameters=1
-CHECK=`grep "^UnsafeUserParameters=1" /etc/zabbix/zabbix_agentd.conf|wc -l`
+CHECK=`grep "^UnsafeUserParameters=1" /usr/local/zabbix/etc/zabbix_agentd.conf|wc -l`
 if [[ "w$CHECK" == "w0" ]]
 then
-    sed -ri '/UnsafeUserParameters=/a UnsafeUserParameters=1' /etc/zabbix/zabbix_agentd.conf
+    sed -ri '/UnsafeUserParameters=/a UnsafeUserParameters=1' /usr/local/zabbix/etc/zabbix_agentd.conf
 fi
 
 # Timeout=10
-CHECK=`grep "^Timeout=3" /etc/zabbix/zabbix_agentd.conf|wc -l`
+CHECK=`grep "^Timeout=3" /usr/local/zabbix/etc/zabbix_agentd.conf|wc -l`
 if [[ "w$CHECK" == "w0" ]]
 then
-    sed -ri '/Timeout=3/a Timeout=10' /etc/zabbix/zabbix_agentd.conf
+    sed -ri '/Timeout=3/a Timeout=10' /usr/local/zabbix/etc/zabbix_agentd.conf
 fi
 
 # AllowRoot=1
-CHECK=`grep "^AllowRoot=1" /etc/zabbix/zabbix_agentd.conf|wc -l`
+CHECK=`grep "^AllowRoot=1" /usr/local/zabbix/etc/zabbix_agentd.conf|wc -l`
 if [[ "w$CHECK" == "w0" ]]
 then
-    sed -ri '/AllowRoot=0/a AllowRoot=1' /etc/zabbix/zabbix_agentd.conf
+    sed -ri '/AllowRoot=0/a AllowRoot=1' /usr/local/zabbix/etc/zabbix_agentd.conf
 fi
-/etc/init.d/zabbix-agent restart
+/etc/init.d/zabbix_agentd restart
