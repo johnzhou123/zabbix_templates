@@ -14,7 +14,7 @@ install中安装执行install.sh
 /usr/local/zabbix/bin/scripts/mdb_sstat.py
 ```
 pbinpaths = [
-            "/opt/mongodb/bin/mongo",
+            "/usr/bin/mongo",
            "/home/mongodb/mongodb/bin/mongo",
             ]
 
@@ -30,7 +30,7 @@ pbinpaths = [
 
 获取本机器mongodb所有信息
 ```
-/usr//usr/local/zabbix/bin/scripts/mdb_sstat.py -a
+/usr/local/zabbix/bin/scripts/mdb_sstat.py -a
 ```
 
 ## 原理
