@@ -50,7 +50,7 @@ echo "zabbix ALL=(root) NOPASSWD:/bin/netstat" > /etc/sudoers.d/zabbix
 echo 'Defaults:zabbix   !requiretty'  >>  /etc/sudoers.d/zabbix
 chmod 600  /etc/sudoers.d/zabbix
 ```
-更改/usr//usr/local/zabbix/bin/scripts/mdb_sstat.py
+更改/usr/local/zabbix/bin/scripts/mdb_sstat.py
 ```
 
 将cmdstr = "netstat  -nlpt | grep '%s' | awk '{print $4}'|awk -F: '{print $2}'|uniq" % (binname)
@@ -74,7 +74,7 @@ chmod 600  /etc/sudoers.d/zabbix
 
 修改方式如下：
 
-/usr//usr/local/zabbix/bin/scripts/mdb_sstat.py
+/usr/local/zabbix/bin/scripts/mdb_sstat.py
 
 ```
 port_list=[27017]
